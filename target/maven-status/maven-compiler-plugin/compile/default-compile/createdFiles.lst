@@ -1,9 +1,0 @@
-com\foi\springboot\web\model\Todo.class
-com\foi\springboot\web\service\LoginService.class
-com\foi\springboot\web\controller\LoginController.class
-com\foi\springboot\web\controller\FOIController.class
-com\foi\springboot\web\SpringBootFirstWebApplication.class
-com\foi\springboot\web\configure\SecurityConfig.class
-com\foi\springboot\web\controller\ViewFOIController.class
-com\foi\springboot\web\service\FOIService.class
-com\foi\springboot\web\service\TodoService.class
