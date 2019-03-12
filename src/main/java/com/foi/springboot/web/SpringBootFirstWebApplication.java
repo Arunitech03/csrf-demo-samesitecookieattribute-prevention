@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ComponentScan("com.in28minutes.springboot.web")
+@ComponentScan("com.foi.springboot.web")
 //@ImportResource("classpath:spring-security.xml")
 public class SpringBootFirstWebApplication {
 
