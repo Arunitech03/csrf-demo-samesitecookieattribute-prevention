@@ -37,4 +37,11 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>csrf_html</name>
+			<type>2</type>
+			<location>C:/Workplace/Projects/csrf-demo-samesitecookieattribute-prevention-master/csrf_html</location>
+		</link>
+	</linkedResources>
 </projectDescription>
