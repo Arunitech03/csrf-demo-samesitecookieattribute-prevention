@@ -48,13 +48,19 @@ public class FOIController {
 		 Cookie[] cookies = request.getCookies();
 		    if (cookies != null) {
 		        for (Cookie cookie : cookies) {
-		            if (cookie.getName().equals("uname")) { 
+		            if (cookie.getName().equals("uname1")) { 
 		            	uname = cookie.getValue();
 		            }
 		        }
 		    }
+		    
+		    System.out.println(uname);
+		    System.out.println(session!=null);
+		    System.out.println(session.getAttribute("name"));
 		
-		if(session != null && uname.equals(session.getAttribute("name"))){
+		//if(session != null && uname.equals(session.getAttribute("name"))){
+		    if(session != null && uname.equals(session.getAttribute("name"))){
+		    	
 			session.setAttribute("foi", foi);
 			boolean isupdatefoi = service.updateFOI(foi);
 			if (!isupdatefoi) {
@@ -79,7 +85,7 @@ public class FOIController {
 		 Cookie[] cookies = request.getCookies();
 		    if (cookies != null) {
 		        for (Cookie cookie : cookies) {
-		            if (cookie.getName().equals("uname")) { 
+		            if (cookie.getName().equals("uname1")) { 
 		            	uname = cookie.getValue();
 		            }
 		        }
@@ -102,4 +108,13 @@ public class FOIController {
 		
 		
 	}
+	
+	@RequestMapping(value="/viewfoi", method = RequestMethod.GET)
+	public String showFOIPage(ModelMap model, HttpServletResponse response){
+	response.setHeader("X-XSS-Protection", "1; mode=block");
+	//response.setHeader("X-XSS-PROTECTION", "1");
+	response.setHeader("X-Frame-Options", "DENY");
+	response.setHeader("Content-Security-Policy", "script-src 'self'");
+	return "viewupdatedfoi";
+}
 }

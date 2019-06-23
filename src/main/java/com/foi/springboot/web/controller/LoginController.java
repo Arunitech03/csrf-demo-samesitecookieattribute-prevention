@@ -37,15 +37,23 @@ public class LoginController {
 			return "login";
 		}
 		session.invalidate();
-	    HttpSession newSession = request.getSession();
-	    newSession.setAttribute("user", name);// create session
-	    Cookie ck=new Cookie("uname",name);
-	    ck.setMaxAge(1000000);//changing the maximum age to 0 seconds  
-	    response.addCookie(ck);//adding cookie in the response  
+	   
+		/*
+		 * Cookie ck=new Cookie("uname",name); ck.setMaxAge(1000000);//changing the
+		 * maximum age to 0 seconds response.addCookie(ck);//adding cookie in the
+		 * response
+		 */	    
+		//response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly; SameSite=strict");
+		response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly");
 		model.put("name", name);
 		model.put("password", password);
-		
+		HttpSession newSession = request.getSession();
+		newSession.setAttribute("user", name);// create session
 		return "welcome";
 	}
-
+	
+	@RequestMapping(value="/index", method = RequestMethod.GET)
+	public String WelcomePage(ModelMap model, HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		return "welcome";
+	}
 }

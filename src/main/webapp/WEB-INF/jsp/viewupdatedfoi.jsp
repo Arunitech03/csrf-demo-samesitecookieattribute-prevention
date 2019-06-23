@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<br><h2>Field of Interest Display Page</h2>
+	<center><br><h2>Field of Interest Display Page</h2>
 	<BR/>
 	  <%
 	  {
@@ -27,7 +27,8 @@
     	p.load(reader); %>
     	The Stored Field of Interest is  <b><% out.println(p.getProperty("FOI")); 
     }
-    %></b>
+    %></b><br><br><br>
+    <a href="/index">Index Page</a> </center>
 	</body>
 
 </html>
