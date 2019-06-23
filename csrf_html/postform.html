@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<HEAD>
+<script language="javascript">
+function onLoadSubmit() {
+	document.foiupdate.submit();
+}
+</script>
+</HEAD>
+<body onload="onLoadSubmit()">
+
+<h2>FOI</h2>
+
+<form name="foiupdate" action="http://localhost:8899/updatefoi" Method="POST">
+  FOI<br>
+  <input type="text" name="foi" value="Elephant">
+  <br>
+  <input type="submit" value="Submit">
+</form> 
+
+</body>
+</html>
