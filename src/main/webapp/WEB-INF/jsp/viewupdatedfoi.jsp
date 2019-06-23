@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.FileReader" %>
 <%@ page import="java.util.Properties" %>
+<%@ page import="java.io.File" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,10 +16,16 @@
 	<BR/>
 	  <%
 	  {
-    FileReader reader=new FileReader("D:\\NewWorkplace\\Projects\\TodoApp\\src\\main\\resources\\FOI.properties");
-    Properties p=new Properties();
-    p.load(reader); %>
-    The Stored Field of Interest is  <b><% out.println(p.getProperty("FOI")); 
+		String basePath = new File("").getAbsolutePath();
+		System.out.println(basePath);
+
+		String path = new File("src/main/resources/FOI.properties")
+		                                                           .getAbsolutePath();
+		System.out.println(path);
+    	FileReader reader=new FileReader(path);
+   	 	Properties p=new Properties();
+    	p.load(reader); %>
+    	The Stored Field of Interest is  <b><% out.println(p.getProperty("FOI")); 
     }
     %></b>
 	</body>

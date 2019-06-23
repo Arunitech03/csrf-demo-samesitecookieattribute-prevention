@@ -22,17 +22,57 @@ public class FOIController {
 	@Autowired
 	FOIService service;
 	
-	@RequestMapping(value="/updatefoi", method = RequestMethod.GET)
-		public String showUpdateFOIPage(ModelMap model, HttpServletResponse response){
+	@RequestMapping(value="/getupdatefoiform", method = RequestMethod.GET)
+		public String showGetUpdateFOIPage(ModelMap model, HttpServletResponse response){
 		response.setHeader("X-XSS-Protection", "1; mode=block");
 		//response.setHeader("X-XSS-PROTECTION", "1");
 		response.setHeader("X-Frame-Options", "DENY");
 		response.setHeader("Content-Security-Policy", "script-src 'self'");
-		return "updatefoi";
+		return "getupdatefoi";
 	}
 	
+	@RequestMapping(value="/postupdatefoiform", method = RequestMethod.GET)
+	public String showPostUpdateFOIPage(ModelMap model, HttpServletResponse response){
+	response.setHeader("X-XSS-Protection", "1; mode=block");
+	//response.setHeader("X-XSS-PROTECTION", "1");
+	response.setHeader("X-Frame-Options", "DENY");
+	response.setHeader("Content-Security-Policy", "script-src 'self'");
+	return "postupdatefoi";
+}
+	
 	@RequestMapping(value="/updatefoi", method = RequestMethod.POST)
-	public String updatestatuspage(ModelMap model, @RequestParam String foi, HttpServletRequest request, HttpServletResponse response){
+	public String postupdatestatuspage(ModelMap model, @RequestParam String foi, HttpServletRequest request, HttpServletResponse response){
+		
+		HttpSession session = request.getSession();
+		String uname = null;
+		 Cookie[] cookies = request.getCookies();
+		    if (cookies != null) {
+		        for (Cookie cookie : cookies) {
+		            if (cookie.getName().equals("uname")) { 
+		            	uname = cookie.getValue();
+		            }
+		        }
+		    }
+		
+		if(session != null && uname.equals(session.getAttribute("name"))){
+			session.setAttribute("foi", foi);
+			boolean isupdatefoi = service.updateFOI(foi);
+			if (!isupdatefoi) {
+				model.put("errorMessage", "FOI Not Updated. Please try Again");
+				return "updatefoi";
+			}
+			response.setHeader("X-XSS-Protection", "1; mode=block");
+			//response.setHeader("Content-Security-Policy", "script-src 'self'");
+			//response.setHeader("x-xss-protection", "1; mode=block");
+			return "viewupdatedfoi";
+		}
+		model.put("errorMessage", "Please login Again");
+		return "login";
+		
+		
+	}
+	@RequestMapping(value="/updatefoi", method = RequestMethod.GET)
+	public String getupdatestatuspage(ModelMap model, @RequestParam String foi, HttpServletRequest request, HttpServletResponse response){
 		
 		HttpSession session = request.getSession();
 		String uname = null;
