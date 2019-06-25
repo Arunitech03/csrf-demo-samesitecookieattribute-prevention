@@ -8,8 +8,8 @@ public class LoginService {
 
 	public boolean validateUser(String userid, String password) {
 		//test App
-		return userid.equalsIgnoreCase("Test1234")
-				&& password.equalsIgnoreCase("Test1234");
+		return userid.equalsIgnoreCase("test123")
+				&& password.equalsIgnoreCase("test123");
 		
 	}
 

@@ -1,5 +1,7 @@
 package com.foi.springboot.web.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,8 +45,8 @@ public class LoginController {
 		 * maximum age to 0 seconds response.addCookie(ck);//adding cookie in the
 		 * response
 		 */	    
-		//response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly; SameSite=strict");
-		response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly");
+		response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly; SameSite=lax"); //strict
+		//response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly");
 		model.put("name", name);
 		model.put("password", password);
 		HttpSession newSession = request.getSession();
@@ -55,5 +57,15 @@ public class LoginController {
 	@RequestMapping(value="/index", method = RequestMethod.GET)
 	public String WelcomePage(ModelMap model, HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		return "welcome";
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+	session.invalidate();
+	Cookie[] cookies = request.getCookies();
+	cookies[0].setMaxAge(0);
+	response.addCookie(cookies[0]);
+	//response.sendRedirect("/login");
+    return "login";
 	}
 }

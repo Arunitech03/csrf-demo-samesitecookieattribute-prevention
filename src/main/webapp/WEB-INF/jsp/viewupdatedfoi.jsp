@@ -12,6 +12,7 @@
 </head>
 
 <body>
+	<p align="right"><a href="/logout">LOGOUT</a></p>
 	<center><br><h2>Field of Interest Display Page</h2>
 	<BR/>
 	  <%

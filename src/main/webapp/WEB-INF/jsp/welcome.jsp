@@ -5,6 +5,7 @@
 </head>
 
 <body>
+	<p align="right"><a href="/logout">LOGOUT</a></p>
 	<br><br><br><br><br><br><center>Welcome ${name}!!<br><br>
 	<a href="/getupdatefoiform">Click here</a> to update your Field of Interest in GET Form.
 	&nbsp;&nbsp;
