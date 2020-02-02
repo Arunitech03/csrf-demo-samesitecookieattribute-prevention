@@ -1,6 +1,7 @@
 package com.foi.springboot.web.controller;
 
 import java.io.IOException;
+import java.util.Base64;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.foi.springboot.web.service.LoginService;
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes("fsession")
 public class LoginController {
 	
 	@Autowired
@@ -45,18 +46,19 @@ public class LoginController {
 		 * maximum age to 0 seconds response.addCookie(ck);//adding cookie in the
 		 * response
 		 */	    
-		response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly; SameSite=lax"); //strict
-		//response.setHeader("Set-Cookie", "uname1="+name+"; HttpOnly");
+		String ckvalue = name + "Oi8veGNsb3VkLnh5bGVtLmNvbS90aWQiOlsiRlNULTE1MzgzODgzMzg";
+		//response.setHeader("Set-Cookie", "fsession="+Base64.getEncoder().encodeToString(ckvalue.getBytes())+"; HttpOnly; SameSite=lax"); //strict
+		response.setHeader("Set-Cookie", "fsession="+Base64.getEncoder().encodeToString(ckvalue.getBytes()));
 		model.put("name", name);
 		model.put("password", password);
 		HttpSession newSession = request.getSession();
-		newSession.setAttribute("user", name);// create session
-		return "welcome";
+		newSession.setAttribute("fsession", Base64.getEncoder().encodeToString(ckvalue.getBytes()));// create session
+		return "welcome2";
 	}
 	
 	@RequestMapping(value="/index", method = RequestMethod.GET)
 	public String WelcomePage(ModelMap model, HttpServletRequest request, HttpServletResponse response, HttpSession session){
-		return "welcome";
+		return "welcome2";
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)

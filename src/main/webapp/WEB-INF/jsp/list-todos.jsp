@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>First Web Application</title>
+<title>VulnWeb</title>
 </head>
 
 <body>

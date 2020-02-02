@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.in28minutes.springboot.web</groupId>
-	<artifactId>spring-boot-first-web-application</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.foi.springboot.web</groupId>
+	<artifactId>samesite</artifactId>
+	<version>0.0.1-v2</version>
 	<packaging>jar</packaging>
 
-	<name>spring-boot-first-web-application</name>
-	<description>Demo project for Spring Boot</description>
+	<name>samesite-demo-web-application</name>
+	<description>Demo for samesite attribute</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -72,8 +72,29 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				 <executions>
+        <execution>
+            <goals>
+                <goal>repackage</goal>
+            </goals>
+            <configuration>
+                <classifier>spring-boot</classifier>
+                <mainClass>
+                  com.foi.springboot.web.SpringBootFirstWebApplication
+                </mainClass>
+            </configuration>
+        </execution>
+    </executions>
 			</plugin>
 		</plugins>
+		<resources>
+            <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            </resources>
 	</build>
 
 </project>

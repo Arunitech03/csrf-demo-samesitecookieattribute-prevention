@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.foi.springboot.web.service.FOIService;
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes("fsession")
 public class FOIController {
 	
 	@Autowired
@@ -44,22 +44,22 @@ public class FOIController {
 	public String postupdatestatuspage(ModelMap model, @RequestParam String foi, HttpServletRequest request, HttpServletResponse response){
 		
 		HttpSession session = request.getSession();
-		String uname = null;
+		String fsessionvalue = null;
 		 Cookie[] cookies = request.getCookies();
 		    if (cookies != null) {
 		        for (Cookie cookie : cookies) {
-		            if (cookie.getName().equals("uname1")) { 
-		            	uname = cookie.getValue();
+		            if (cookie.getName().equals("fsession")) { 
+		            	fsessionvalue = cookie.getValue();
 		            }
 		        }
 		    }
 		    
-		    System.out.println(uname);
+		    System.out.println(fsessionvalue);
 		    System.out.println(session!=null);
-		    System.out.println(session.getAttribute("name"));
+		    System.out.println(session.getAttribute("fsession"));
 		
 		//if(session != null && uname.equals(session.getAttribute("name"))){
-		    if(session != null && uname.equals(session.getAttribute("name"))){
+		    if(session != null && fsessionvalue.equals(session.getAttribute("fsession"))){
 		    	
 			session.setAttribute("foi", foi);
 			boolean isupdatefoi = service.updateFOI(foi);
@@ -81,17 +81,17 @@ public class FOIController {
 	public String getupdatestatuspage(ModelMap model, @RequestParam String foi, HttpServletRequest request, HttpServletResponse response){
 		
 		HttpSession session = request.getSession();
-		String uname = null;
+		String fsessionvalue = null;
 		 Cookie[] cookies = request.getCookies();
 		    if (cookies != null) {
 		        for (Cookie cookie : cookies) {
-		            if (cookie.getName().equals("uname1")) { 
-		            	uname = cookie.getValue();
+		            if (cookie.getName().equals("fsession")) { 
+		            	fsessionvalue = cookie.getValue();
 		            }
 		        }
 		    }
 		
-		if(session != null && uname.equals(session.getAttribute("name"))){
+		if(session != null && fsessionvalue.equals(session.getAttribute("fsession"))){
 			session.setAttribute("foi", foi);
 			boolean isupdatefoi = service.updateFOI(foi);
 			if (!isupdatefoi) {
