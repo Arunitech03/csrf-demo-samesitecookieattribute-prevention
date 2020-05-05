@@ -47,8 +47,9 @@ public class LoginController {
 		 * response
 		 */	    
 		String ckvalue = name + "Oi8veGNsb3VkLnh5bGVtLmNvbS90aWQiOlsiRlNULTE1MzgzODgzMzg";
-		//response.setHeader("Set-Cookie", "fsession="+Base64.getEncoder().encodeToString(ckvalue.getBytes())+"; HttpOnly; SameSite=lax"); //strict
-		response.setHeader("Set-Cookie", "fsession="+Base64.getEncoder().encodeToString(ckvalue.getBytes()));
+		//response.setHeader("Set-Cookie", "fsession="+Base64.getEncoder().encodeToString(ckvalue.getBytes())+"; SameSite=lax"); //strict
+		response.setHeader("Set-Cookie", "fsession="+Base64.getEncoder().encodeToString(ckvalue.getBytes())+"; HttpOnly; SameSite=lax"); //strict
+		//response.setHeader("Set-Cookie", "fsession="+Base64.getEncoder().encodeToString(ckvalue.getBytes()));
 		model.put("name", name);
 		model.put("password", password);
 		HttpSession newSession = request.getSession();
